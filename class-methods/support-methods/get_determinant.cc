@@ -1,6 +1,7 @@
 #include "../../s21_matrix_oop.h"
 
-void S21Matrix::GetDeterminant__(double** matrix, int size, double* result) const {
+void S21Matrix::GetDeterminant__(double** matrix, int size,
+                                 double* result) const {
   if (rows_ != cols_)
     throw std::logic_error(
         "Determinant calculation impossible: matrix must be square");

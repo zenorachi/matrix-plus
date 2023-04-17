@@ -60,18 +60,14 @@ gcov_report: $(LIB_NAME)
 	$(OPEN_REPORT) report/index.html
 
 style:
-	@cp ../materials/linters/.clang-format .
-	clang-format -n *.h
-	clang-format -n class-methods/*.cc class-methods/*/*.cc
-	clang-format -n tests/*.cc
-	@rm .clang-format
+	clang-format --style=google -n *.h
+	clang-format --style=google -n class-methods/*.cc class-methods/*/*.cc
+	clang-format --style=google -n tests/*.cc
 
 clang_format:
-	@cp ../materials/linters/.clang-format .
-	clang-format -i *.h
-	clang-format -i class-methods/*.cc class-methods/*/*.cc
-	clang-format -i tests/*.cc
-	@rm .clang-format
+	clang-format --style=google -i *.h
+	clang-format --style=google -i class-methods/*.cc class-methods/*/*.cc
+	clang-format --style=google -i tests/*.cc
 
 build:
 	@$(CC) $(OBJ_FLAGS) $(SOURCE)

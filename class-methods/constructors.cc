@@ -32,6 +32,6 @@ S21Matrix::S21Matrix(const S21Matrix& other) noexcept
 
 S21Matrix::S21Matrix(S21Matrix&& other) noexcept
     : rows_(other.rows_), cols_(other.cols_), matrix_(other.matrix_) {
-      other.rows_ = 0, other.cols_ = 0;
-      other.matrix_ = nullptr;
+  other.rows_ = 0, other.cols_ = 0;
+  other.matrix_ = nullptr;
 }

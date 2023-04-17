@@ -1,5 +1,5 @@
-#ifndef CPP1_S21_MATRIXPLUS_2_SRC_S21_MATRIX_OOP_H_
-#define CPP1_S21_MATRIXPLUS_2_SRC_S21_MATRIX_OOP_H_ 
+#ifndef MATRIX_PLUS_S21_MATRIX_OOP_H_
+#define MATRIX_PLUS_S21_MATRIX_OOP_H_
 
 #include <cmath>
 #include <iostream>
@@ -46,15 +46,6 @@ class S21Matrix {
   S21Matrix& operator*=(const double num);
   double& operator()(int i, int j);
 
-  void debug() {
-    for (int i = 0; i < rows_; i++) {
-      for (int j = 0; j < cols_; j++) {
-        std::cout << matrix_[i][j] << " ";
-      }
-      std::cout << std::endl;
-    }
-  }
-
  private:
   int rows_, cols_;
   double** matrix_;
@@ -64,4 +55,4 @@ class S21Matrix {
   void GetDeterminant__(double** matrix, int size, double* result) const;
 };
 
-#endif  // CPP1_S21_MATRIXPLUS_2_SRC_S21_MATRIX_OOP_H_
+#endif  // MATRIX_PLUS_S21_MATRIX_OOP_H_

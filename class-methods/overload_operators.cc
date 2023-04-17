@@ -24,9 +24,13 @@ S21Matrix S21Matrix::operator*(const double num) const {
   return tmp;
 }
 
-bool S21Matrix::operator==(const S21Matrix& other) const noexcept { return EqMatrix(other); }
+bool S21Matrix::operator==(const S21Matrix& other) const noexcept {
+  return EqMatrix(other);
+}
 
-bool S21Matrix::operator!=(const S21Matrix& other) const noexcept { return !EqMatrix(other); }
+bool S21Matrix::operator!=(const S21Matrix& other) const noexcept {
+  return !EqMatrix(other);
+}
 
 S21Matrix& S21Matrix::operator=(const S21Matrix& other) {
   if (matrix_) {
