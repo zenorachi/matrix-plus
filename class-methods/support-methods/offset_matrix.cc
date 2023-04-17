@@ -1,6 +1,6 @@
 #include "../../s21_matrix_oop.h"
 
-void S21Matrix::__getOffsetMatrix(int row, int col, S21Matrix& other) {
+void S21Matrix::GetOffsetMatrix__(int row, int col, S21Matrix& other) const {
   int rowShift = 0, colShift = 0;
   int size = rows_;
   S21Matrix tmp(size - 1, size - 1);

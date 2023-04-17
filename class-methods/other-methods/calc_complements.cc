@@ -1,6 +1,6 @@
 #include "../../s21_matrix_oop.h"
 
-S21Matrix S21Matrix::CalcComplements() {
+S21Matrix S21Matrix::CalcComplements() const {
   if (rows_ != cols_)
     throw std::logic_error(
         "Complements calculation impossible: matrix should be square");
@@ -10,7 +10,7 @@ S21Matrix S21Matrix::CalcComplements() {
   for (int i = 0; i < size; i++) {
     for (int j = 0; j < size; j++) {
       S21Matrix tmp;
-      __getOffsetMatrix(i, j, tmp);
+      GetOffsetMatrix__(i, j, tmp);
       determinant = tmp.Determinant();
       result.matrix_[i][j] = determinant * pow(-1, (i + j));
       determinant++;

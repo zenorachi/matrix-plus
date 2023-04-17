@@ -22,9 +22,9 @@ class S21Matrix {
   void MulNumber(const double num);
   void MulMatrix(const S21Matrix& other);
   S21Matrix Transpose() const;
-  S21Matrix CalcComplements();
-  double Determinant();
-  S21Matrix InverseMatrix();
+  S21Matrix CalcComplements() const;
+  double Determinant() const;
+  S21Matrix InverseMatrix() const;
 
   // GETTERS && SETTERS
   int getRows() const noexcept;
@@ -58,10 +58,10 @@ class S21Matrix {
  private:
   int rows_, cols_;
   double** matrix_;
-  void CopyValues__(const S21Matrix& other, int rows, int cols) noexcept;
+  void CopyValues__(const S21Matrix& other, int rows, int cols) const noexcept;
   bool EqualSize__(const S21Matrix& other) const noexcept;
-  void __getOffsetMatrix(int row, int col, S21Matrix& other);
-  void __getDeterminant(double** matrix, int size, double* result);
+  void GetOffsetMatrix__(int row, int col, S21Matrix& other) const;
+  void GetDeterminant__(double** matrix, int size, double* result) const;
 };
 
 #endif  // CPP1_S21_MATRIXPLUS_2_SRC_S21_MATRIX_OOP_H_
