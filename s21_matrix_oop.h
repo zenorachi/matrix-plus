@@ -1,3 +1,6 @@
+#ifndef CPP1_S21_MATRIXPLUS_2_SRC_S21_MATRIX_OOP_H_
+#define CPP1_S21_MATRIXPLUS_2_SRC_S21_MATRIX_OOP_H_ 
+
 #include <cmath>
 #include <iostream>
 
@@ -60,3 +63,5 @@ class S21Matrix {
   void __getOffsetMatrix(int row, int col, S21Matrix* tmp);
   void __getDeterminant(double** matrix, int size, double* result);
 };
+
+#endif  // CPP1_S21_MATRIXPLUS_2_SRC_S21_MATRIX_OOP_H_
