@@ -29,8 +29,8 @@ class S21Matrix {
   // GETTERS && SETTERS
   int getRows() const noexcept;
   int getCols() const noexcept;
-  void setRows(int rows_);
-  void setCols(int cols_);
+  void setRows(int rows);
+  void setCols(int cols);
 
   // OPERATORS OVERLOADING
   S21Matrix operator+(const S21Matrix& other) const;
@@ -59,6 +59,7 @@ class S21Matrix {
   int rows_, cols_;
   double** matrix_;
   void __initialize();
+  void CopyValues__(const S21Matrix& other, int rows, int cols) noexcept;
   bool __equalSize(const S21Matrix& other) const noexcept;
   void __getOffsetMatrix(int row, int col, S21Matrix* tmp);
   void __getDeterminant(double** matrix, int size, double* result);
