@@ -54,6 +54,7 @@ TEST(SUM_MATRIX, SumMatrix_1) {
     }
 }
 
+
 TEST(SUM_MATRIX, SumMatrix_2) {
     S21Matrix matrix_1(3, 3);
     S21Matrix matrix_2(5, 5);

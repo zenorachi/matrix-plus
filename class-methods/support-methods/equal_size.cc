@@ -1,6 +1,6 @@
 #include "../../s21_matrix_oop.h"
 
-bool S21Matrix::__equalSize(const S21Matrix& other) {
+bool S21Matrix::__equalSize(const S21Matrix& other) const noexcept {
   if (rows_ == other.rows_ && cols_ == other.cols_)
     return true;
   else

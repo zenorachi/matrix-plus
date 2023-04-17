@@ -1,4 +1,4 @@
-LIB_NAME = matrix_oop.a
+LIB_NAME = s21_matrix_oop.a
 
 CC = gcc
 CFLAGS := -lstdc++ -std=c++17 -pedantic -Wall -Werror -Wextra
@@ -36,7 +36,7 @@ EXECUTABLE = test
 all: $(LIB_NAME)
 
 clean:
-	@rm -rf $(LIB_NAME)
+	@rm -rf s21_matrix_oop.a
 	@rm -rf $(EXECUTABLE)
 	@rm -rf $(OBJ)
 	@rm -rf *.dSYM
@@ -46,10 +46,10 @@ test: $(LIB_NAME)
 	$(CC) $(CFLAGS) $(SRC_TEST) $(LIB_NAME) -lgtest -o $(EXECUTABLE) && ./$(EXECUTABLE)
 
 $(LIB_NAME): clean build
-	ar rcs $(LIB_NAME) $(OBJ)
-	ranlib $(LIB_NAME)
+	ar rcs s21_matrix_oop.a $(OBJ)
+	ranlib s21_matrix_oop.a
 	@rm -rf *.o
-	@echo && echo "\033[37;1;42m --- LIBRARY matrix_oop.a CREATED SUCCESSFULLY --- \033[0m"
+	@echo && echo "\033[37;1;42m --- LIBRARY s21_matrix_oop.a CREATED SUCCESSFULLY --- \033[0m"
 
 gcov_report: $(LIB_NAME)
 	@$(CC) $(CFLAGS) $(SOURCE) $(SRC_TEST) $(LIB_NAME) -lgtest -o $(EXECUTABLE) --coverage
@@ -60,15 +60,22 @@ gcov_report: $(LIB_NAME)
 	$(OPEN_REPORT) report/index.html
 
 style:
-	clang-format --style=google -n *.h
-	clang-format --style=google -n class-methods/*.cc class-methods/*/*.cc
+	@cp ../materials/linters/.clang-format .
+	clang-format -n *.h
+	clang-format -n class-methods/*.cc class-methods/*/*.cc
+	@rm .clang-format
 
 clang_format:
-	clang-format --style=google -i *.h
-	clang-format --style=google -i class-methods/*.cc class-methods/*/*.cc
+	@cp ../materials/linters/.clang-format .
+	clang-format -i *.h
+	clang-format -i class-methods/*.cc class-methods/*/*.cc
+	@rm .clang-format
 
 build:
 	@$(CC) $(OBJ_FLAGS) $(SOURCE)
+
+main:
+	@$(CC) $(CFLAGS) $(SOURCE) main.cc -o test
 
 fsanitize_check: $(LIB_NAME)
 	$(CC) -fsanitize=address $(CFLAGS) tests/test_matrix_oop.cc $(LIB_NAME) -lgtest -o $(EXECUTABLE) && ./$(EXECUTABLE)
@@ -77,4 +84,4 @@ valgrind_check: $(LIB_NAME)
 	$(CC) $(CFLAGS) tests/test_matrix_oop.cc $(LIB_NAME) -lgtest -o $(EXECUTABLE)
 	valgrind --leak-check=full -s -q --track-origins=yes ./$(EXECUTABLE)
 
-.PHONY: all clean test matrix_oop.a gcov_report style clang_format main build fsanitize_check valgrind_check
+.PHONY: all clean test s21_matrix_oop.a gcov_report style clang_format main build fsanitize_check valgrind_check
