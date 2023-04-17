@@ -63,12 +63,14 @@ style:
 	@cp ../materials/linters/.clang-format .
 	clang-format -n *.h
 	clang-format -n class-methods/*.cc class-methods/*/*.cc
+	clang-format -n tests/*.cc
 	@rm .clang-format
 
 clang_format:
 	@cp ../materials/linters/.clang-format .
 	clang-format -i *.h
 	clang-format -i class-methods/*.cc class-methods/*/*.cc
+	clang-format -i tests/*.cc
 	@rm .clang-format
 
 build:

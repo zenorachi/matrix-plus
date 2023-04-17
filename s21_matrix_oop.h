@@ -60,7 +60,7 @@ class S21Matrix {
   double** matrix_;
   void CopyValues__(const S21Matrix& other, int rows, int cols) noexcept;
   bool EqualSize__(const S21Matrix& other) const noexcept;
-  void __getOffsetMatrix(int row, int col, S21Matrix* tmp);
+  void __getOffsetMatrix(int row, int col, S21Matrix& other);
   void __getDeterminant(double** matrix, int size, double* result);
 };
 
