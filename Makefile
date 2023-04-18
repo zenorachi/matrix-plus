@@ -41,6 +41,7 @@ clean:
 	@rm -rf $(OBJ)
 	@rm -rf *.dSYM
 	@rm -rf report *.info *.gcno *.gcda
+	@rm -rf main
 
 test: $(LIB_NAME)
 	$(CC) $(CFLAGS) $(SRC_TEST) $(LIB_NAME) -lgtest -o $(EXECUTABLE) && ./$(EXECUTABLE)
@@ -73,7 +74,7 @@ build:
 	@$(CC) $(OBJ_FLAGS) $(SOURCE)
 
 main:
-	@$(CC) $(CFLAGS) $(SOURCE) main.cc -o test
+	@$(CC) $(CFLAGS) main.cc $(LIB_NAME) -o main && ./main
 
 fsanitize_check: $(LIB_NAME)
 	$(CC) -fsanitize=address $(CFLAGS) tests/test_matrix_oop.cc $(LIB_NAME) -lgtest -o $(EXECUTABLE) && ./$(EXECUTABLE)
