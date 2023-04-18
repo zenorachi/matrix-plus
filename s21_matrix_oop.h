@@ -27,10 +27,10 @@ class S21Matrix {
   S21Matrix InverseMatrix() const;
 
   // GETTERS && SETTERS
-  int getRows() const noexcept;
-  int getCols() const noexcept;
-  void setRows(int rows);
-  void setCols(int cols);
+  int GetRows() const noexcept;
+  int GetCols() const noexcept;
+  void SetRows(int rows);
+  void SetCols(int cols);
 
   // OPERATORS OVERLOADING
   S21Matrix operator+(const S21Matrix& other) const;

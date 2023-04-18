@@ -28,7 +28,7 @@ TEST(EQ_MATRIX, EqMatrix_3) {
 TEST(EQ_MATRIX, EqMatrix_4) {
   S21Matrix matrix_1(104, 43);
   S21Matrix matrix_2(104, 43);
-  matrix_2.setCols(100341);
+  matrix_2.SetCols(100341);
   bool state = (matrix_1 == matrix_2);
   EXPECT_FALSE(state);
 }
@@ -129,8 +129,8 @@ TEST(MUL_MATRIX, MulMatrix_1) {
   }
   matrix_1.MulMatrix(matrix_2);
   double result = 300.0;
-  for (int i = 0; i < matrix_1.getRows(); i++) {
-    for (int j = 0; j < matrix_1.getCols(); j++) {
+  for (int i = 0; i < matrix_1.GetRows(); i++) {
+    for (int j = 0; j < matrix_1.GetCols(); j++) {
       EXPECT_DOUBLE_EQ(result, matrix_1(i, j));
     }
   }
@@ -147,8 +147,8 @@ TEST(MUL_MATRIX, MulMatrix_2) {
 TEST(TRANSPOSE, Transpose_1) {
   S21Matrix matrix_1(2, 3);
   int increment = 1;
-  for (int i = 0; i < matrix_1.getRows(); i++) {
-    for (int j = 0; j < matrix_1.getCols(); j++) {
+  for (int i = 0; i < matrix_1.GetRows(); i++) {
+    for (int j = 0; j < matrix_1.GetCols(); j++) {
       matrix_1(i, j) = increment++;
     }
   }
@@ -211,10 +211,10 @@ TEST(DETERMINANT, Determinant_4) {
   EXPECT_DOUBLE_EQ(detRes, result);
   S21Matrix testMatrix;
   testMatrix = matrix;
-  testMatrix.setRows(5);
-  testMatrix.setCols(100034);
-  int rows = testMatrix.getRows();
-  int cols = testMatrix.getCols();
+  testMatrix.SetRows(5);
+  testMatrix.SetCols(100034);
+  int rows = testMatrix.GetRows();
+  int cols = testMatrix.GetCols();
   EXPECT_TRUE(rows == 5);
   EXPECT_TRUE(cols == 100034);
   EXPECT_ANY_THROW(testMatrix.Determinant());
@@ -338,7 +338,7 @@ TEST(OTHER_TESTS, TestCase_1) { EXPECT_ANY_THROW(S21Matrix test(-1, 1)); }
 TEST(OTHER_TESTS, TestCase_2) {
   S21Matrix matrix;
   S21Matrix test(matrix);
-  EXPECT_TRUE(test.getRows() == test.getCols());
+  EXPECT_TRUE(test.GetRows() == test.GetCols());
 }
 
 TEST(OTHER_TESTS, TestCase_3) {
@@ -349,8 +349,8 @@ TEST(OTHER_TESTS, TestCase_3) {
   matrix(1, 1) = 1.5;
   S21Matrix test(matrix);
   test = test + matrix;
-  for (int i = 0; i < test.getCols(); i++) {
-    for (int j = 0; j < test.getCols(); j++) {
+  for (int i = 0; i < test.GetCols(); i++) {
+    for (int j = 0; j < test.GetCols(); j++) {
       EXPECT_DOUBLE_EQ(test(i, j), 3.0);
     }
   }
@@ -366,8 +366,8 @@ TEST(OTHER_TESTS, TestCase_4) {
   test = test * 2;
   matrix = matrix * 3;
   test = test - matrix;
-  for (int i = 0; i < test.getCols(); i++) {
-    for (int j = 0; j < test.getCols(); j++) {
+  for (int i = 0; i < test.GetCols(); i++) {
+    for (int j = 0; j < test.GetCols(); j++) {
       EXPECT_DOUBLE_EQ(test(i, j), -1.5);
     }
   }
@@ -437,10 +437,10 @@ TEST(OTHER_TESTS, TestCase_9) {
   matrix(1, 0) = 1.5;
   matrix(1, 1) = 1.5;
   S21Matrix test(std::move(matrix));
-  EXPECT_TRUE(matrix.getRows() == 0);
-  EXPECT_TRUE(matrix.getCols() == 0);
-  EXPECT_TRUE(test.getRows() == 2);
-  EXPECT_TRUE(test.getCols() == 2);
+  EXPECT_TRUE(matrix.GetRows() == 0);
+  EXPECT_TRUE(matrix.GetCols() == 0);
+  EXPECT_TRUE(test.GetRows() == 2);
+  EXPECT_TRUE(test.GetCols() == 2);
   for (int i = 0; i < 2; i++) {
     for (int j = 0; j < 2; j++) {
       EXPECT_DOUBLE_EQ(test(i, j), 1.5);
@@ -451,10 +451,22 @@ TEST(OTHER_TESTS, TestCase_9) {
 TEST(OTHER_TESTS, TestCase_10) {
   S21Matrix matrix;
   S21Matrix test(std::move(matrix));
-  EXPECT_TRUE(matrix.getRows() == 0);
-  EXPECT_TRUE(matrix.getCols() == 0);
-  EXPECT_TRUE(test.getRows() == 0);
-  EXPECT_TRUE(test.getCols() == 0);
+  EXPECT_TRUE(matrix.GetRows() == 0);
+  EXPECT_TRUE(matrix.GetCols() == 0);
+  EXPECT_TRUE(test.GetRows() == 0);
+  EXPECT_TRUE(test.GetCols() == 0);
+}
+
+
+TEST(OTHER_TESTS, TestCase_11) {
+  S21Matrix matrix(2, 2);
+  matrix(0, 0) = 913434.189418;
+  matrix(0, 1) = 2;
+  matrix(1, 0) = 3;
+  matrix(1, 1) = 4;
+  matrix.SetRows(1);
+  matrix.SetCols(1);
+  EXPECT_DOUBLE_EQ(matrix(0, 0), 913434.189418);
 }
 
 int main(int argc, char** argv) {

@@ -42,13 +42,9 @@ S21Matrix& S21Matrix::operator=(const S21Matrix& other) {
   }
   rows_ = other.rows_;
   cols_ = other.cols_;
-  matrix_ = new double*[rows_];
-  for (int i = 0; i < rows_; i++) matrix_[i] = new double[cols_];
-  for (int i = 0; i < rows_; i++) {
-    for (int j = 0; j < cols_; j++) {
-      matrix_[i][j] = other.matrix_[i][j];
-    }
-  }
+  matrix_ = new double*[rows_]();
+  for (int i = 0; i < rows_; i++) matrix_[i] = new double[cols_]();
+  CopyValues__(other, rows_, cols_);
   return *this;
 }
 
