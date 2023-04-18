@@ -457,7 +457,6 @@ TEST(OTHER_TESTS, TestCase_10) {
   EXPECT_TRUE(test.GetCols() == 0);
 }
 
-
 TEST(OTHER_TESTS, TestCase_11) {
   S21Matrix matrix(2, 2);
   matrix(0, 0) = 913434.189418;
