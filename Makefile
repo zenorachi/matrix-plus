@@ -64,11 +64,13 @@ style:
 	clang-format --style=google -n *.h
 	clang-format --style=google -n class-methods/*.cc class-methods/*/*.cc
 	clang-format --style=google -n tests/*.cc
+	clang-format --style=google -n main.cc
 
 clang_format:
 	clang-format --style=google -i *.h
 	clang-format --style=google -i class-methods/*.cc class-methods/*/*.cc
 	clang-format --style=google -i tests/*.cc
+	clang-format --style=google -i main.cc
 
 build:
 	@$(CC) $(OBJ_FLAGS) $(SOURCE)
